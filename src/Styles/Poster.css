@@ -1,0 +1,21 @@
+.Poster {
+    width: 30%;
+    opacity: 0;
+    animation: fadeInAnimation 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.PosterImg {
+    /* height: 100%; */
+    height: calc(100vh - 3px);
+    width: 100%;
+    object-fit: cover
+}

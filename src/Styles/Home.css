@@ -1,0 +1,129 @@
+.Home {
+    /* background-color: rgb(17, 214, 214); */
+    display: flex;
+}
+
+/* Styling for the confirmation message container */
+.confirmation-message {
+  text-align: center;
+  margin: 50px auto;
+  max-width: 600px;
+  padding: 20px;
+  border: 2px solid #1d7d46;
+  border-radius: 10px;
+  background-color: #f2f9f5;
+}
+
+/* Styling for the main header */
+.confirmation-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #1d7d46;
+}
+
+/* Styling for the main content */
+.confirmation-content {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Styling for the company name */
+.company-name {
+  font-weight: bold;
+  color: #1d7d46;
+}
+
+/* Styling for the thank you message */
+.thank-you {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #1d7d46;
+}
+
+.restart-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.restart-button:hover {
+  background-color: #0056b3;
+}
+@media (max-width: 1429px) {
+    .Slogan{
+            font-size: 100%;
+    }
+
+     .TypesContainer {
+        column-gap: 30px;
+    }
+
+    .eachTypeContainer {
+        width: 25%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .Home{
+        display: block;
+    }
+
+    .Poster{
+        width: 100%;
+    }
+
+    .Slogan{
+            font-size: 150%;
+    }
+
+    .PosterImg{
+        height: 60vh;
+        object-fit:cover;
+        /* margin-left: auto ; */
+        /* border-radius: 50px; */
+    }
+
+    .FormsSection{
+        width: 100%;
+        height: fit-content;
+    }
+
+    .PaymentSection{
+        width: 100%;
+        height: 60vh;
+    }
+
+   
+
+}
+
+@media (max-width: 560px) {
+    .PaymentSection{
+            height: 90vh;
+    }
+    .Slogan{
+        font-size: 100%;
+        padding-bottom: 25px;
+    }
+
+     .TypesContainer {
+        column-gap: 20px;
+    }
+
+    .eachTypeContainer {
+        width: 27%;
+    }
+   
+    .PaymentSectionDetailsSquare{
+        width: 90%;
+        margin: 0;
+    }
+}

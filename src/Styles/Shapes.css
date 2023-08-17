@@ -1,0 +1,31 @@
+/* CircleDiv.css */
+
+.circle {
+    width: 150px;
+    height: 150px;
+    background-color: orange;
+    border-radius: 50%;
+    top: 10vh;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 120px solid #d8db0e;
+    right: 10px;
+    top: 50vh;
+    rotate: -80deg;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    background-color: #8ffa4c;
+}
+
+#shape {
+    position: absolute;
+    z-index: -1000;
+}
