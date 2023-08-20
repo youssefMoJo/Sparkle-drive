@@ -6,7 +6,7 @@ function Poster() {
     <div className="Poster">
       <img
         className="PosterImg"
-        src={require("../Assets/poster.jpg")}
+        src={require("../Assets/poster1.jpg")}
         alt="poster"
       />
     </div>
