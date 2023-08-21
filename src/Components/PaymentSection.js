@@ -173,7 +173,8 @@ function PaymentSection(props) {
               </p>
               <p>
                 <span className="problemEmail">Email:</span>{" "}
-                <a href="mailto:support@example.com">support@example.com</a>
+                <a href="mailto:help.sparkledrive@gmail.com">help.sparkledrive@gmail.com
+                </a>
               </p>
             </div>
           )}

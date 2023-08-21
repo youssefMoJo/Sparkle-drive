@@ -42,7 +42,7 @@ function Home() {
               <br />
               Best regards,
               <br />
-              <span className="company-name">[Your Company Name]</span>
+              <span className="company-name">[Sparkle Drive]</span>
             </div>
             <button className="restart-button" onClick={refreshPage}>
               Start a New Order
