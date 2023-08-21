@@ -19,9 +19,20 @@ function FormsSection(props) {
   const [selectedCleanTypeIndex, setSelectedCleanTypeIndex] = useState(null);
   const [selectedCleanType, setSelectedCleanType] = useState("");
 
-  const [selectedCustomizationIndex, setselectedCustomizationIndex] =
+  // This if for Exterior Customization
+  const [selectedExCustomizationIndex, setselectedExCustomizationIndex] =
     useState(null);
-  const [selectedCustomization, setSelectedCustomization] = useState("");
+  const [selectedExCustomization, setSelectedExCustomization] = useState("");
+
+  // This if for Interior Customization
+  const [selectedInCustomizationIndex, setselectedInCustomizationIndex] =
+    useState(null);
+  const [selectedInCustomization, setSelectedInCustomization] = useState("");
+
+  // This if for Both Customization
+  const [selectedBoCustomizationIndex, setselectedBoCustomizationIndex] =
+    useState(null);
+  const [selectedBoCustomization, setSelectedBoCustomization] = useState("");
 
   const [selectedPayTypeIndex, setSelectedPayTypeIndex] = useState(null);
   const [selectedPayType, setSelectedPayType] = useState("");
@@ -74,7 +85,8 @@ function FormsSection(props) {
               postalCode,
               selectedCarType,
               selectedCleanType,
-              selectedCustomization,
+              selectedExCustomization,
+              selectedInCustomization,
               selectedPayType,
               selectedDate,
               selectedTime,
@@ -95,8 +107,10 @@ function FormsSection(props) {
           setSelectedCarTypeIndex(null);
           setSelectedCleanType("");
           setSelectedCleanTypeIndex(null);
-          setSelectedCustomization("");
-          setselectedCustomizationIndex(null);
+          setSelectedExCustomization("");
+          setselectedExCustomizationIndex(null);
+          setSelectedInCustomization("");
+          setselectedInCustomizationIndex(null);
           setSelectedDate("");
           setSelectedPayType("");
           setSelectedPayTypeIndex(null);
@@ -129,7 +143,7 @@ function FormsSection(props) {
     formReady &&
     (selectedCleanType === "Exterior" || selectedCleanType === "Both")
   ) {
-    if (selectedCustomization.length > 0) {
+    if (selectedExCustomization.length > 0) {
       setisFormReady(true);
     } else {
       setisFormReady(false);
@@ -283,44 +297,95 @@ function FormsSection(props) {
       setSelectedCleanTypeIndex(null);
       setSelectedCleanType("");
     } else {
+      if (cleanTypes[index] === "Exterior") {
+        setselectedInCustomizationIndex(null);
+        setSelectedInCustomization("");
+        setselectedBoCustomizationIndex(null);
+        setSelectedBoCustomization("");
+      }
+      else if (cleanTypes[index] === "Interior") {
+        setselectedExCustomizationIndex(null);
+        setSelectedExCustomization("");
+        setselectedBoCustomizationIndex(null);
+        setSelectedBoCustomization("");
+      }
+      else if (cleanTypes[index] === "Both") {
+        setselectedExCustomizationIndex(null);
+        setSelectedExCustomization("");
+        setselectedInCustomizationIndex(null);
+        setSelectedInCustomization("");
+      }
       // Otherwise, select the clicked div
       setSelectedCleanTypeIndex(index);
       setSelectedCleanType(cleanTypes[index]);
     }
   };
 
-  const washCustomizations = ["Basic Clean", "Premium Shine", "Ultimate Spa"];
-  const washCustomizationsDescription = [
-    "A thorough wash using water and soap to rejuvenate your vehicle's exterior.",
-    "Enhance your car's look with water, soap, and a premium waxing for a lasting, glossy finish.",
-    "Treat your vehicle to a premium experience with our all-inclusive package: water, soap, waxing, detailed drying, wheel cleaning, and tire treatment.",
+  const washExCustomizations = ["Basic Clean", "Premium Shine"];
+  const washExCustomizationsDescription = [
+    "A thorough wash using water and soap to refresh your vehicle's exterior.",
+    "Give your car a premium shine with a complete treatment: water, soap, detailed drying, wheel cleaning, tire shining, and a glossy finish.",
   ];
 
-  const handleCustomizations = (index) => {
-    if (selectedCustomizationIndex === index) {
+  const handleExCustomizations = (index) => {
+    if (selectedExCustomizationIndex === index) {
       // If the same div is clicked again, unselect it
-      setselectedCustomizationIndex(null);
-      setSelectedCustomization("");
+      setselectedExCustomizationIndex(null);
+      setSelectedExCustomization("");
     } else {
       // Otherwise, select the clicked div
-      setselectedCustomizationIndex(index);
-      setSelectedCustomization(washCustomizations[index]);
+      setselectedExCustomizationIndex(index);
+      setSelectedExCustomization(washExCustomizations[index]);
     }
   };
 
-  // washCustomizations[selectedCustomizationIndex]
-  //  selectedCleanType !== "Exterior"
+  const washInCustomizations = ["Basic Clean", "Premium Shine"];
+  const washInCustomizationsDescription = [
+    "Vacuuming of carpets, mats, and seats, along with window cleaning.",
+    "Using a carpet shampooer for deep cleaning of carpets, mats, and seats, along with thorough vacuuming and window cleaning.",
+  ];
+
+  const handleInCustomizations = (index) => {
+    if (selectedInCustomizationIndex === index) {
+      // If the same div is clicked again, unselect it
+      setselectedInCustomizationIndex(null);
+      setSelectedInCustomization("");
+    } else {
+      // Otherwise, select the clicked div
+      setselectedInCustomizationIndex(index);
+      setSelectedInCustomization(washInCustomizations[index]);
+    }
+  };
+
+  const washBoCustomizations = ["Basic Clean", "Premium Shine"];
+  const washBoCustomizationsDescription = [
+    "",
+    "",
+  ];
+
+  const handleBoCustomizations = (index) => {
+    if (selectedBoCustomizationIndex === index) {
+      // If the same div is clicked again, unselect it
+      setselectedBoCustomizationIndex(null);
+      setSelectedBoCustomization("");
+    } else {
+      // Otherwise, select the clicked div
+      setselectedBoCustomizationIndex(index);
+      setSelectedBoCustomization(washBoCustomizations[index]);
+    }
+  };
+
 
   if (cleanTypes[selectedCleanTypeIndex] && carTypes[selectedCarTypeIndex]) {
     if (
       cleanTypes[selectedCleanTypeIndex] === "Exterior" ||
       cleanTypes[selectedCleanTypeIndex] === "Both"
     ) {
-      if (selectedCustomization.length > 0) {
+      if (selectedExCustomization.length > 0) {
         setTotalPrice(
           pricingData.carTypes[carTypes[selectedCarTypeIndex]][
-            cleanTypes[selectedCleanTypeIndex]
-          ][washCustomizations[selectedCustomizationIndex]]
+          cleanTypes[selectedCleanTypeIndex]
+          ][washExCustomizations[selectedExCustomizationIndex]]
         );
       } else {
         setTotalPrice(0);
@@ -328,7 +393,7 @@ function FormsSection(props) {
     } else {
       setTotalPrice(
         pricingData.carTypes[carTypes[selectedCarTypeIndex]][
-          cleanTypes[selectedCleanTypeIndex]
+        cleanTypes[selectedCleanTypeIndex]
         ]
       );
     }
@@ -393,7 +458,7 @@ function FormsSection(props) {
         <div className="formSmallSection">
           <div className="greenTickWithTitle">
             {reEnterPhoneNumber.length === 16 &&
-            reEnterPhoneNumber === phoneNumber ? (
+              reEnterPhoneNumber === phoneNumber ? (
               <img
                 className="greenTick"
                 src={require(`../Assets/greenTick2.png`)}
@@ -545,10 +610,10 @@ function FormsSection(props) {
           </div>
         </div>
 
-        {selectedCleanType === "Exterior" || selectedCleanType === "Both" ? (
+        {selectedCleanType === "Exterior" || selectedCleanType === "Interior" || selectedCleanType === "Both" ? (
           <div className="formSmallSection">
             <div className="greenTickWithTitle">
-              {selectedCustomization.length > 0 ? (
+              {selectedExCustomization.length > 0 ? (
                 <img
                   className="greenTick"
                   src={require(`../Assets/greenTick2.png`)}
@@ -558,35 +623,93 @@ function FormsSection(props) {
                 <div></div>
               )}
               <div className="tile">
-                Customize Your {selectedCleanType === "Both" ? "Exterior" : ""}{" "}
+                Customize Your {selectedCleanType === "Both" ? "Exterior and Interior" : selectedCleanType === "Exterior" ? "Exterior" : selectedCleanType === "Interior" ? "Interior" : ""}{" "}
                 Wash
                 <span className="star">*</span>
               </div>
             </div>
             <div className="TypesContainers">
-              {washCustomizations.map((type, i) => {
-                return (
-                  <div
-                    onClick={() => handleCustomizations(i)}
-                    key={i}
-                    className="eachTypeContainerForCustomization"
-                    style={{
-                      backgroundColor:
-                        selectedCustomizationIndex === i ? "green" : "white",
-                      color:
-                        selectedCustomizationIndex === i ? "white" : "black",
-                      borderColor:
-                        selectedCustomizationIndex === i ? "black" : "#BABABA",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <div className="typeName">
-                      <span style={{ fontWeight: "bold" }}>{type}: </span>
-                      {washCustomizationsDescription[i]}
-                    </div>
-                  </div>
-                );
-              })}
+              {
+                selectedCleanType === "Exterior" ?
+                  washExCustomizations.map((type, i) => {
+                    return (
+                      <div
+                        onClick={() => handleExCustomizations(i)}
+                        key={i}
+                        className="eachTypeContainerForCustomization"
+                        style={{
+                          backgroundColor:
+                            selectedExCustomizationIndex === i ? "green" : "white",
+                          color:
+                            selectedExCustomizationIndex === i ? "white" : "black",
+                          borderColor:
+                            selectedExCustomizationIndex === i ? "black" : "#BABABA",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <div className="typeName">
+                          <span style={{ fontWeight: "bold" }}>{type}: </span>
+                          {washExCustomizationsDescription[i]}
+                        </div>
+                      </div>
+                    );
+                  }) :
+                  selectedCleanType === "Interior" ?
+                    washInCustomizations.map((type, i) => {
+                      return (
+                        <div
+                          onClick={() => handleInCustomizations(i)}
+                          key={i}
+                          className="eachTypeContainerForCustomization"
+                          style={{
+                            backgroundColor:
+                              selectedInCustomizationIndex === i ? "green" : "white",
+                            color:
+                              selectedInCustomizationIndex === i ? "white" : "black",
+                            borderColor:
+                              selectedInCustomizationIndex === i ? "black" : "#BABABA",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <div className="typeName">
+                            <span style={{ fontWeight: "bold" }}>{type}: </span>
+                            {washInCustomizationsDescription[i]}
+                          </div>
+                        </div>
+                      );
+                    }) :
+                    selectedCleanType === "Both" ?
+                      washBoCustomizations.map((type, i) => {
+                        return (
+                          <div
+                            onClick={() => handleBoCustomizations(i)}
+                            key={i}
+                            className="eachTypeContainerForCustomization"
+                            style={{
+                              backgroundColor:
+                                selectedBoCustomizationIndex === i ? "green" : "white",
+                              color:
+                                selectedBoCustomizationIndex === i ? "white" : "black",
+                              borderColor:
+                                selectedBoCustomizationIndex === i ? "black" : "#BABABA",
+                              cursor: "pointer",
+                            }}
+                          >
+                            <div className="typeName">
+                              <span style={{ fontWeight: "bold" }}>{type}: </span>
+                              <div style={{ lineHeight: "1.5" }}>
+                                {washBoCustomizationsDescription[i]}
+                                <br />
+                                <span style={{ color: selectedBoCustomizationIndex === i ? "yellow" : "blue", fontWeight: "bold" }}>Exterior: </span> {washExCustomizationsDescription[i]}
+                                <br />
+                                <br />
+                                <span style={{ color: selectedBoCustomizationIndex === i ? "yellow" : "blue", fontWeight: "bold" }}>Interior: </span>{washInCustomizationsDescription[i]}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      }) : <div></div>
+              }
             </div>
           </div>
         ) : (
@@ -623,20 +746,18 @@ function FormsSection(props) {
             </select>
             <div className="working-hours">
               <p
-                className={`working-hours-note${
-                  isWeekend(selectedDate)
-                    ? ""
-                    : selectedDate.length === 0
+                className={`working-hours-note${isWeekend(selectedDate)
+                  ? ""
+                  : selectedDate.length === 0
                     ? ""
                     : "-weekend"
-                }`}
+                  }`}
               >
                 Weekdays: 6 PM - 10 PM
               </p>
               <p
-                className={`working-hours-note${
-                  isWeekend(selectedDate) ? "-weekend" : ""
-                }`}
+                className={`working-hours-note${isWeekend(selectedDate) ? "-weekend" : ""
+                  }`}
               >
                 Weekends: 12 PM - 9 PM
               </p>
@@ -706,7 +827,9 @@ function FormsSection(props) {
           </p>
         </div>
       </div>
-      <RingLoader style={{ position: "absolute" }} color="#36d7b7" />
+      {/* <div style={{ position: "absolute", width: "100%", height: "100vh", backgroundColor: "gray", bottom: 0, left: 0, opacity: 0.6 }}>
+      </div> */}
+      {/* <RingLoader style={{ position: "absolute" }} color="#36d7b7" /> */}
 
       <ToastContainer />
     </div>

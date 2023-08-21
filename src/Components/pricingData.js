@@ -2,41 +2,44 @@ const pricingData = {
   carTypes: {
     Cydan: {
       Exterior: {
-        "Basic Clean": 1000,
-        "Premium Shine": 2000,
-        "Ultimate Spa": 3000,
+        "Basic Clean": 100,
+        "Premium Shine": 125,
       },
-      Interior: 100,
+      Interior: {
+        "Basic Clean": 100,
+        "Premium Shine": 125,
+      },
       Both: {
-        "Basic Clean": 1,
-        "Premium Shine": 2,
-        "Ultimate Spa": 3,
+        "Basic Clean": 180,
+        "Premium Shine": 200,
       },
     },
     SUV: {
       Exterior: {
-        "Basic Clean": 4000,
-        "Premium Shine": 5000,
-        "Ultimate Spa": 6000,
+        "Basic Clean": 125,
+        "Premium Shine": 150,
       },
-      Interior: 200,
+      Interior: {
+        "Basic Clean": 125,
+        "Premium Shine": 150,
+      },
       Both: {
-        "Basic Clean": 4,
-        "Premium Shine": 5,
-        "Ultimate Spa": 6,
+        "Basic Clean": 200,
+        "Premium Shine": 225,
       },
     },
     Truck: {
       Exterior: {
-        "Basic Clean": 7000,
-        "Premium Shine": 8000,
-        "Ultimate Spa": 9000,
+        "Basic Clean": 125,
+        "Premium Shine": 175,
       },
-      Interior: 300,
+      Interior: {
+        "Basic Clean": 125,
+        "Premium Shine": 150,
+      },
       Both: {
-        "Basic Clean": 7,
-        "Premium Shine": 8,
-        "Ultimate Spa": 9,
+        "Basic Clean": 200,
+        "Premium Shine": 250,
       },
     },
   },

@@ -80,7 +80,7 @@
     column-gap: 50px;
 }
 
-.eachTypeContainerForCustomization{
+.eachTypeContainerForCustomization {
     height: fit-content;
     width: 90%;
     border-radius: 15px;
@@ -122,23 +122,23 @@
 }
 
 .date-dropdown {
-  width: 40%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  background-color: #f7f7f7;
+    width: 40%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f7f7f7;
 }
 
 .working-hours-note {
-  margin: 5px 0;
-  /* font-size: 14px; */
-  color: #666;
+    margin: 5px 0;
+    /* font-size: 14px; */
+    color: #666;
 }
 
 .working-hours-note-weekend {
-  margin: 5px 0;
-  color: green;
-  font-weight:500;
+    margin: 5px 0;
+    color: green;
+    font-weight: 500;
 }
 
 .timeSliderContainer {
@@ -148,19 +148,23 @@
     /* height: 30px; */
     margin-bottom: -15px;
 }
-.sellectedTime{
+
+.sellectedTime {
     margin-left: 10px;
 }
 
 .note {
-  font-size: 16px;
-  color: #333; /* Default text color */
+    font-size: 16px;
+    color: #333;
+    /* Default text color */
 }
 
 .important-text {
-  color: #e74c3c; /* Red color for important text */
+    color: #e74c3c;
+    /* Red color for important text */
 }
 
 .satisfactory-text {
-  color: #3498db; /* Blue color for satisfactory text */
+    color: #3498db;
+    /* Blue color for satisfactory text */
 }
