@@ -1,24 +1,25 @@
 .PaymentSection {
-    width: 35%;
-    text-align: center;
-    padding-top: 15vh;
-    background-color: rgb(240, 228, 213);
-    height: 85vh;
+  width: 35%;
+  text-align: center;
+  padding-top: 15vh;
+  background-color: rgb(240, 228, 213);
+  height: 85vh;
 }
 
 .PaymentSectionDetailsSquare {
-    background-color: #D9D9D9;
-    width: 80%;
-    height: fit-content;
-    margin: auto;
-    /* opacity: 0.8; */
-    border-radius: 15px;
-    padding: 20px;
+  background-color: #D9D9D9;
+  width: 80%;
+  height: fit-content;
+  margin: auto;
+  /* opacity: 0.8; */
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .totalsection {
-    display: flex;
-    justify-content: space-between; /* Align items at the beginning and end of the container */
+  display: flex;
+  justify-content: space-between;
+  /* Align items at the beginning and end of the container */
 }
 
 /* Points */
@@ -51,19 +52,21 @@ h2 {
 }
 
 .point-label {
-   font-size: 16px;
-   text-align: left;
+  font-size: 16px;
+  text-align: left;
 }
 
 .point-label input {
   margin-right: 10px;
   align-self: center;
 }
+
 .confirmation-text {
   font-size: 14px;
   font-weight: bold;
-  color: rgb(0, 72, 228); /* Or any color that fits your design */
-  }
+  color: rgb(0, 72, 228);
+  /* Or any color that fits your design */
+}
 
 .confirmation-point input {
   margin-right: 10px;
@@ -117,8 +120,9 @@ h2 {
   font-weight: bold;
 }
 
-.confirmationNote{
-   font-size: 16px;
-  color: #333; /* Default text color */
+.confirmationNote {
+  font-size: 16px;
+  color: #c53333;
+  /* Default text color */
   text-align: left;
 }
