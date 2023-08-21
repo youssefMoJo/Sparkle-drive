@@ -1,6 +1,6 @@
 .Home {
-    /* background-color: rgb(17, 214, 214); */
-    display: flex;
+  /* background-color: rgb(17, 214, 214); */
+  display: flex;
 }
 
 /* Styling for the confirmation message container */
@@ -57,73 +57,93 @@
 .restart-button:hover {
   background-color: #0056b3;
 }
+
+.loadingBG {
+  background-color: gray;
+  width: 100%;
+  height: 100vh;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  opacity: 0.6
+}
+
 @media (max-width: 1429px) {
-    .Slogan{
-            font-size: 100%;
-    }
+  .Slogan {
+    font-size: 100%;
+  }
 
-     .TypesContainer {
-        column-gap: 30px;
-    }
+  .TypesContainer {
+    column-gap: 30px;
+  }
 
-    .eachTypeContainer {
-        width: 25%;
-    }
+  .eachTypeContainer {
+    width: 25%;
+  }
 }
 
 @media (max-width: 1000px) {
-    .Home{
-        display: block;
-    }
+  .Home {
+    display: block;
+  }
 
-    .Poster{
-        width: 100%;
-    }
+  .Poster {
+    width: 100%;
+  }
 
-    .Slogan{
-            font-size: 150%;
-    }
+  .Slogan {
+    font-size: 150%;
+  }
 
-    .PosterImg{
-        height: 60vh;
-        object-fit:cover;
-        /* margin-left: auto ; */
-        /* border-radius: 50px; */
-    }
+  .PosterImg {
+    height: 60vh;
+    object-fit: cover;
+    /* margin-left: auto ; */
+    /* border-radius: 50px; */
+  }
 
-    .FormsSection{
-        width: 100%;
-        height: fit-content;
-    }
+  .FormsSection {
+    width: 100%;
+    height: fit-content;
+  }
 
-    .PaymentSection{
-        width: 100%;
-        height: 60vh;
-    }
+  .PaymentSection {
+    width: 100%;
+    height: 60vh;
+  }
 
-   
-
+  .loadingContainer {
+    display: none;
+    visibility: hidden;
+  }
 }
 
 @media (max-width: 560px) {
-    .PaymentSection{
-            height: 90vh;
-    }
-    .Slogan{
-        font-size: 100%;
-        padding-bottom: 25px;
-    }
+  .PaymentSection {
+    height: 90vh;
+  }
 
-     .TypesContainer {
-        column-gap: 20px;
-    }
+  .Slogan {
+    font-size: 100%;
+    padding-bottom: 25px;
+  }
 
-    .eachTypeContainer {
-        width: 27%;
-    }
-   
-    .PaymentSectionDetailsSquare{
-        width: 90%;
-        margin: 0;
-    }
+  .TypesContainer {
+    column-gap: 20px;
+  }
+
+  .eachTypeContainer {
+    width: 27%;
+  }
+
+  .PaymentSectionDetailsSquare {
+    width: 90%;
+    margin: 0;
+  }
+
+  .loadingContainer {
+    display: none;
+    visibility: hidden;
+  }
+
 }

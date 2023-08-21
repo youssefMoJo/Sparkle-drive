@@ -43,6 +43,8 @@ function FormsSection(props) {
   const { setTotalPrice, totalPrice } = useTotalPrice(); // Get the setTotalPrice function
   const { setisFormReady } = useIsFormReady(); // Get the setTotalPrice function
 
+  const [confirmationError, setConfirmationError] = useState(false);
+
   // const allDetails = () => {
   //   return {
   //     name: name,
@@ -87,6 +89,7 @@ function FormsSection(props) {
               selectedCleanType,
               selectedExCustomization,
               selectedInCustomization,
+              selectedBoCustomization,
               selectedPayType,
               selectedDate,
               selectedTime,
@@ -97,6 +100,8 @@ function FormsSection(props) {
 
         if (response.ok) {
           console.log("Data successfully saved in the database.");
+          window.scrollTo(0, 0);
+
           props.showConfirmationPage(true);
           setName("");
           setPhoneNumber("");
@@ -111,20 +116,42 @@ function FormsSection(props) {
           setselectedExCustomizationIndex(null);
           setSelectedInCustomization("");
           setselectedInCustomizationIndex(null);
+          setSelectedBoCustomization("");
+          setselectedBoCustomizationIndex(null);
           setSelectedDate("");
           setSelectedPayType("");
           setSelectedPayTypeIndex(null);
+          setConfirmationError(false)
         } else {
           console.log("Failed to save data in the database.");
+          setConfirmationError(true)
           toast.error("Failed to save data. Please try again later.", {
             position: toast.POSITION.TOP_CENTER,
           });
+
+          setTimeout(function () {
+            window.location.reload();
+          }, 3500);
+
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+          }, 100);
         }
       } catch (error) {
         console.error("An error occurred:", error);
+        setConfirmationError(true)
         toast.error("An error occurred. Please try again later.", {
           position: toast.POSITION.TOP_CENTER,
         });
+
+        setTimeout(function () {
+          window.location.reload();
+        }, 3500);
+
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 100);
+
       }
     };
 
@@ -133,23 +160,15 @@ function FormsSection(props) {
     }
   }, [props.sendConfirm]);
 
-  if (
-    formReady &&
-    selectedCleanType !== "Exterior" &&
-    selectedCleanType !== "Both"
-  ) {
-    setisFormReady(true);
-  } else if (
-    formReady &&
-    (selectedCleanType === "Exterior" || selectedCleanType === "Both")
-  ) {
-    if (selectedExCustomization.length > 0) {
+
+
+
+  if (formReady) {
+    if (selectedExCustomization.length > 0 || selectedInCustomization.length > 0 || selectedBoCustomization.length > 0) {
       setisFormReady(true);
     } else {
       setisFormReady(false);
     }
-  } else {
-    setisFormReady(false);
   }
 
   const generateNextSevenDays = () => {
@@ -377,25 +396,33 @@ function FormsSection(props) {
 
 
   if (cleanTypes[selectedCleanTypeIndex] && carTypes[selectedCarTypeIndex]) {
-    if (
-      cleanTypes[selectedCleanTypeIndex] === "Exterior" ||
-      cleanTypes[selectedCleanTypeIndex] === "Both"
-    ) {
-      if (selectedExCustomization.length > 0) {
-        setTotalPrice(
-          pricingData.carTypes[carTypes[selectedCarTypeIndex]][
-          cleanTypes[selectedCleanTypeIndex]
-          ][washExCustomizations[selectedExCustomizationIndex]]
-        );
-      } else {
-        setTotalPrice(0);
-      }
-    } else {
+
+    if (selectedExCustomization.length > 0) {
       setTotalPrice(
         pricingData.carTypes[carTypes[selectedCarTypeIndex]][
         cleanTypes[selectedCleanTypeIndex]
-        ]
+        ][washExCustomizations[selectedExCustomizationIndex]]
       );
+    }
+
+    else if (selectedInCustomization.length > 0) {
+      setTotalPrice(
+        pricingData.carTypes[carTypes[selectedCarTypeIndex]][
+        cleanTypes[selectedCleanTypeIndex]
+        ][washInCustomizations[selectedInCustomizationIndex]]
+      );
+    }
+
+    else if (selectedBoCustomization.length > 0) {
+      setTotalPrice(
+        pricingData.carTypes[carTypes[selectedCarTypeIndex]][
+        cleanTypes[selectedCleanTypeIndex]
+        ][washBoCustomizations[selectedBoCustomizationIndex]]
+      );
+    }
+
+    else {
+      setTotalPrice(0);
     }
   } else {
     setTotalPrice(0);
@@ -827,10 +854,21 @@ function FormsSection(props) {
           </p>
         </div>
       </div>
-      {/* <div style={{ position: "absolute", width: "100%", height: "100vh", backgroundColor: "gray", bottom: 0, left: 0, opacity: 0.6 }}>
-      </div> */}
-      {/* <RingLoader style={{ position: "absolute" }} color="#36d7b7" /> */}
 
+      {
+        (props.sendConfirm && !confirmationError) ?
+          <div className="loadingContainer">
+            <div style={{ position: 'absolute', top: "45%", left: "45%", zIndex: 1000 }}>
+              <RingLoader color="blue" />
+            </div>
+            <div
+              className="loadingBG"
+            >
+            </div>
+          </div>
+          :
+          <div></div>
+      }
       <ToastContainer />
     </div>
   );

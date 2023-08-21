@@ -168,3 +168,13 @@
     color: #3498db;
     /* Blue color for satisfactory text */
 }
+
+/* @media (max-width: 560px) {
+    .loadingBG {
+        background-color: #0056b3;
+        width: 100vh;
+        height: 100vh;
+        bottom: 0;
+        left: 0;
+    }
+} */
