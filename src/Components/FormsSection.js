@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from "react";
+import React, { useState, useEffect } from "react";
 import pricingData from "./pricingData";
 import "../Styles/FormsSection.css";
 import Slogan from "./Slogan";
@@ -140,6 +140,10 @@ function FormsSection(props) {
 
     const confirmationButtonClicked = async () => {
       try {
+        let TotalAfterDiscount = totalPrice;
+        if (discountActiveStatus) {
+          TotalAfterDiscount = totalPrice - 15;
+        }
         const response = await fetch(
           `https://carwash-d2381-default-rtdb.firebaseio.com/Days/${selectedDate}/${phoneNumber}.json`,
           {
@@ -161,6 +165,7 @@ function FormsSection(props) {
               selectedDate,
               selectedTime,
               totalPrice,
+              TotalAfterDiscount,
             }),
           }
         );

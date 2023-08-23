@@ -2,7 +2,7 @@ import "../Styles/PaymentSection.css";
 // import CircleDiv from "./CircleDiv.js";
 // import TriangleDiv from "./TriangleDiv";
 // import SquareDiv from "./SquareDiv";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTotalPrice } from "./TotalPriceContext";
 import { useIsFormReady } from "./FormReadyContext";
 
@@ -14,6 +14,8 @@ function PaymentSection(props) {
   const [showContactMessage, setShowContactMessage] = useState(false);
   const { totalPrice } = useTotalPrice();
   const { isFormReady } = useIsFormReady();
+
+  const [discountActiveStatus, setDiscountActiveStatus] = useState(false);
 
   const handleContactButtonClick = () => {
     setShowContactMessage(!showContactMessage);
@@ -56,16 +58,60 @@ function PaymentSection(props) {
     }
   };
 
+  useEffect(() => {
+    const chaeckDiscount = async () => {
+      try {
+        const response = await fetch(
+          `https://carwash-d2381-default-rtdb.firebaseio.com/Discount.json`,
+          {
+            method: "GET", // Use the GET method to fetch data
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data from Firebase.");
+        }
+
+        const discountActivasionStatus = await response.json(); // Parse the response JSON
+        setDiscountActiveStatus(discountActivasionStatus);
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
+
+    chaeckDiscount();
+  }, []);
+
   return (
     <div className="PaymentSection">
       <div className="PaymentSectionDetailsSquare">
-        {/* <CircleDiv />
-        <TriangleDiv />
-        <SquareDiv /> */}
         <div className="totalsection">
           <h3>Total</h3>
-          <h3>$ {totalPrice} </h3>
+          <h3 style={{ color: "#3e8f3e" }}>${totalPrice} </h3>
         </div>
+
+        {discountActiveStatus ? (
+          <div className="totalsection">
+            <h3>Discount</h3>
+            <h3 style={{ color: "#e74c3c" }}>- $15 </h3>
+          </div>
+        ) : (
+          <div></div>
+        )}
+
+        {discountActiveStatus && totalPrice > 0 ? (
+          <div className="totalsection">
+            <h3>New Total</h3>
+            <h3 style={{ color: "#3e8f3e" }}>
+              ${totalPrice === 0 ? 0 : totalPrice - 15}{" "}
+            </h3>
+          </div>
+        ) : (
+          <div></div>
+        )}
 
         <div className="confirmation-container">
           {/* <h2>Order Confirmation</h2> */}

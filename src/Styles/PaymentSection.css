@@ -20,12 +20,14 @@
 .totalsection {
   display: flex;
   justify-content: space-between;
+  margin-bottom: -20px;
   /* Align items at the beginning and end of the container */
 }
 
 /* Points */
 
 .confirmation-container {
+  margin-top: 20px;
   /* width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -127,3 +129,4 @@ h2 {
   /* Default text color */
   text-align: left;
 }
+
