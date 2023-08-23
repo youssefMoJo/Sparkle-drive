@@ -120,7 +120,7 @@
 
 @media (max-width: 560px) {
   .PaymentSection {
-    height: 90vh;
+    height: 100vh;
   }
 
   .Slogan {
@@ -137,8 +137,8 @@
   }
 
   .PaymentSectionDetailsSquare {
-    width: 90%;
-    margin: 0;
+    width: 80%;
+    margin: auto;
   }
 
   .loadingContainer {
@@ -146,4 +146,10 @@
     visibility: hidden;
   }
 
+}
+
+@media (max-height: 700px) {
+  .PaymentSection {
+    height: 130vh;
+  }
 }

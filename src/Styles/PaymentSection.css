@@ -2,9 +2,10 @@
   width: 35%;
   text-align: center;
   padding-top: 15vh;
-  /* background-color: rgb(240, 228, 213); */
-  background-image: url('../Assets/paymentBG1.jpg');
+  background-color: rgb(240, 228, 213);
+  /* background-image: url('../Assets/paymentBG1.jpg'); */
   height: 85vh;
+  /* margin-bottom: 90px; */
 }
 
 .PaymentSectionDetailsSquare {
@@ -24,7 +25,7 @@
   /* Align items at the beginning and end of the container */
 }
 
-/* Points */
+
 
 .confirmation-container {
   margin-top: 20px;
@@ -74,6 +75,7 @@ h2 {
 .confirmation-point input {
   margin-right: 10px;
   align-self: center;
+  background-color: #007bff;
 }
 
 .confirm-button {
@@ -130,3 +132,11 @@ h2 {
   text-align: left;
 }
 
+@media (max-width: 450px) {
+  .point-label {
+    font-size: 13px;
+  } 
+  .confirmation-text {
+    font-size: 13px;
+  }
+}

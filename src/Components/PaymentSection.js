@@ -114,7 +114,6 @@ function PaymentSection(props) {
         )}
 
         <div className="confirmation-container">
-          {/* <h2>Order Confirmation</h2> */}
           <div
             className={`confirmation-point${point1Checked ? " checked" : ""}`}
           >
@@ -123,7 +122,7 @@ function PaymentSection(props) {
               checked={point1Checked}
               onChange={handlePoint1Change}
             />
-            <label className="point-label">
+            <label onClick={handlePoint1Change} className="point-label">
               After confirmation, you'll receive a detailed message on your
               phone. Reply to the message to modify or cancel your request. Our
               team is here to assist you.
@@ -137,7 +136,7 @@ function PaymentSection(props) {
               checked={point2Checked}
               onChange={handlePoint2Change}
             />
-            <label className="point-label">
+            <label onClick={handlePoint2Change} className="point-label">
               Our team member will reach out within 1 hour to reconfirm details.
             </label>
           </div>
@@ -149,7 +148,7 @@ function PaymentSection(props) {
               checked={point3Checked}
               onChange={handlePoint3Change}
             />
-            <label className="point-label">
+            <label onClick={handlePoint3Change} className="point-label">
               Before our team member arrives, we'll call to ensure the car is
               available for washing.
             </label>
@@ -159,13 +158,16 @@ function PaymentSection(props) {
               confirmationChecked ? " checked" : ""
             }`}
           >
+            <input
+              type="checkbox"
+              checked={confirmationChecked}
+              onChange={handleConfirmationChange}
+            />
             <label className="point-label">
-              <input
-                type="checkbox"
-                checked={confirmationChecked}
-                onChange={handleConfirmationChange}
-              />
-              <span className="confirmation-text">
+              <span
+                onClick={handleConfirmationChange}
+                className="confirmation-text"
+              >
                 I confirm that I have read and understood the above points.
               </span>
             </label>
@@ -203,7 +205,7 @@ function PaymentSection(props) {
 
           <div
             className="havingIssueContainer"
-            onClick={handleContactButtonClick}
+            // onClick={handleContactButtonClick}
           >
             <img
               className="issueIcon"
@@ -213,20 +215,18 @@ function PaymentSection(props) {
             <div className="havingIssue">Have any issues?</div>
           </div>
 
-          {showContactMessage && (
-            <div className="contact-message">
-              <p>
-                Send us an email with your problem, and we will reply within 24
-                hours. Please include your phone number in the email.
-              </p>
-              <p>
-                <span className="problemEmail">Email:</span>{" "}
-                <a href="mailto:help.sparkledrive@gmail.com">
-                  help.sparkledrive@gmail.com
-                </a>
-              </p>
-            </div>
-          )}
+          <div className="contact-message">
+            <p>
+              Send us an email with your problem, and we will reply within 24
+              hours. Please include your phone number in the email.
+            </p>
+            <p>
+              <span className="problemEmail">Email:</span>{" "}
+              <a href="mailto:help.sparkledrive@gmail.com">
+                help.sparkledrive@gmail.com
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
