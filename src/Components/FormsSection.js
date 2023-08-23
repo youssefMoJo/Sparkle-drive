@@ -44,7 +44,11 @@ function FormsSection(props) {
   const { setisFormReady } = useIsFormReady(); // Get the setTotalPrice function
 
   const [confirmationError, setConfirmationError] = useState(false);
-  const [discountActive, setDiscountActive] = useState(false);
+
+  const [discountActiveStatus, setDiscountActiveStatus] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(null);
+  const [discountAvtivisionStartTime, setDiscountAvtivisionStartTime] =
+    useState(null);
 
   let formReady =
     name.length > 0 &&
@@ -58,36 +62,6 @@ function FormsSection(props) {
     selectedDate.length > 0;
 
   useEffect(() => {
-    const saveStartDiscountTime = async () => {
-      const activationTimestamp = Date.now();
-      try {
-        const response = await fetch(
-          `https://carwash-d2381-default-rtdb.firebaseio.com/DiscountActivatedTimestamp.json`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(activationTimestamp),
-          }
-        );
-
-        if (response.ok) {
-          console.log("Data successfully saved in the database.");
-        } else {
-          console.log("Failed to save data in the database.");
-          toast.error("Failed to save data. Please try again later.", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-        }
-      } catch (error) {
-        console.error("An error occurred:", error);
-        toast.error("An error occurred. Please try again later.", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      }
-    };
-
     const chaeckDiscount = async () => {
       try {
         const response = await fetch(
@@ -105,9 +79,57 @@ function FormsSection(props) {
         }
 
         const discountActivasionStatus = await response.json(); // Parse the response JSON
-        setDiscountActive(discountActivasionStatus);
+        setDiscountActiveStatus(discountActivasionStatus);
+
         if (discountActivasionStatus) {
-          saveStartDiscountTime();
+          const activationResponse = await fetch(
+            `https://carwash-d2381-default-rtdb.firebaseio.com/DiscountActivatedTimestamp.json`,
+            {
+              method: "GET", // Use the GET method to fetch data
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          const discountActivasionTimeStamp = await activationResponse.json();
+
+          if (discountActivasionTimeStamp === 0) {
+            // If it doesn't exist, save the current time as the activation timestamp
+            await fetch(
+              `https://carwash-d2381-default-rtdb.firebaseio.com/DiscountActivatedTimestamp.json`,
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(Date.now()),
+              }
+            );
+          } else {
+            const getDiscountActivationTimeStamp = await fetch(
+              `https://carwash-d2381-default-rtdb.firebaseio.com/DiscountActivatedTimestamp.json`,
+              {
+                method: "GET", // Use the GET method to fetch data
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+
+            const discountActivationTimeStampValue =
+              await getDiscountActivationTimeStamp.json();
+            setDiscountAvtivisionStartTime(discountActivationTimeStampValue);
+
+            const currentTime = Date.now();
+            const countdownDuration = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+            const timeRemainingValue =
+              discountActivationTimeStampValue +
+              countdownDuration -
+              currentTime;
+
+            setTimeRemaining(timeRemainingValue);
+          }
         }
       } catch (error) {
         console.error("An error occurred:", error);
@@ -463,10 +485,65 @@ function FormsSection(props) {
   const timeRangeStart = isWeekend(selectedDate) ? 12 : 18;
   const timeRangeEnd = isWeekend(selectedDate) ? 21 : 22;
 
+  function TimeBox({ label, value }) {
+    return (
+      <div className="time-box">
+        <p className="time-box-value">{value}</p>
+        <p className="time-box-label">{label}</p>
+      </div>
+    );
+  }
+
+  const days = Math.floor(timeRemaining / (24 * 60 * 60 * 1000));
+  const hours = Math.floor(
+    (timeRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
+  );
+  const minutes = Math.floor((timeRemaining % (60 * 60 * 1000)) / (60 * 1000));
+  const seconds = Math.floor((timeRemaining % (60 * 1000)) / 1000);
+
+  useEffect(() => {
+    // Update the remaining time every second
+    const interval = setInterval(updateRemainingTime, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timeRemaining]);
+
+  const updateRemainingTime = () => {
+    if (timeRemaining > 1000) {
+      setTimeRemaining(timeRemaining - 1000);
+    } else {
+      setTimeRemaining(0);
+    }
+  };
+
   return (
     <div className="FormsSection">
       <Slogan />
       <div className="formsContainer">
+        <div className="discount-message">
+          {discountActiveStatus ? (
+            timeRemaining !== null ? (
+              <div className="discount-active">
+                <p className="discount-label">Discount is active.</p>
+                <p className="discount-info">
+                  Enjoy the $15 discount during the first week!
+                </p>
+                <div className="time-boxes">
+                  <TimeBox label="Days" value={days} />
+                  <TimeBox label="Hours" value={hours} />
+                  <TimeBox label="Minutes" value={minutes} />
+                  <TimeBox label="Seconds" value={seconds} />
+                </div>
+              </div>
+            ) : (
+              <p>Loading...</p>
+            )
+          ) : (
+            <p className="noDiscount">No discount available at the moment.</p>
+          )}
+        </div>
         {/* this is for name input */}
         <div className="formSmallSection">
           <div className="greenTickWithTitle">
