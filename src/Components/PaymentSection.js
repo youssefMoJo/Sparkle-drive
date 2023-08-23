@@ -109,8 +109,9 @@ function PaymentSection(props) {
             </label>
           </div>
           <div
-            className={`confirmation-point${confirmationChecked ? " checked" : ""
-              }`}
+            className={`confirmation-point${
+              confirmationChecked ? " checked" : ""
+            }`}
           >
             <label className="point-label">
               <input
@@ -126,14 +127,15 @@ function PaymentSection(props) {
 
           <button
             onClick={confirmClicked}
-            className={`confirm-button${!point1Checked ||
+            className={`confirm-button${
+              !point1Checked ||
               !point2Checked ||
               !point3Checked ||
               !confirmationChecked ||
               !isFormReady
-              ? " disabled"
-              : ""
-              }`}
+                ? " disabled"
+                : ""
+            }`}
             disabled={
               !point1Checked ||
               !point2Checked ||
@@ -173,14 +175,14 @@ function PaymentSection(props) {
               </p>
               <p>
                 <span className="problemEmail">Email:</span>{" "}
-                <a href="mailto:help.sparkledrive@gmail.com">help.sparkledrive@gmail.com
+                <a href="mailto:help.sparkledrive@gmail.com">
+                  help.sparkledrive@gmail.com
                 </a>
               </p>
             </div>
           )}
         </div>
       </div>
-
     </div>
   );
 }

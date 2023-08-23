@@ -2,7 +2,8 @@
   width: 35%;
   text-align: center;
   padding-top: 15vh;
-  background-color: rgb(240, 228, 213);
+  /* background-color: rgb(240, 228, 213); */
+  background-image: url('../Assets/paymentBG1.jpg');
   height: 85vh;
 }
 
