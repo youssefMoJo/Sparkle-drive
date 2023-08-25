@@ -767,10 +767,10 @@ function FormsSection(props) {
               ) : (
                 <div></div>
               )}
-              <div className="tile">
+              <div id="bothCustomization" className="tile">
                 Customize Your{" "}
                 {selectedCleanType === "Both"
-                  ? "Exterior and Interior"
+                  ? <span className="bothCustomization">Exterior and Interior</span>
                   : selectedCleanType === "Exterior"
                     ? "Exterior"
                     : selectedCleanType === "Interior"

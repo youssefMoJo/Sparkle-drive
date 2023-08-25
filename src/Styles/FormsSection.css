@@ -332,4 +332,10 @@
     .time-box-label {
         font-size: 0.7rem;
     }
+
+    #bothCustomization {
+        margin-bottom: 9px;
+        font-size: 16px;
+        font-weight: bold;
+    }
 }
