@@ -88,6 +88,17 @@
     border-style: solid;
     padding: 10px;
     margin-bottom: 13px;
+    animation: fadeInAnimation 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .eachTypeContainer {
