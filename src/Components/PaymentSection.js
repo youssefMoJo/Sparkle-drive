@@ -117,12 +117,12 @@ function PaymentSection(props) {
           <div
             className={`confirmation-point${point1Checked ? " checked" : ""}`}
           >
-            <input
+            {/* <input
               type="checkbox"
               checked={point1Checked}
               onChange={handlePoint1Change}
-            />
-            <label onClick={handlePoint1Change} className="point-label">
+            /> */}
+            <label className="point-label">
               After confirmation, you'll receive a detailed message on your
               phone. Reply to the message to modify or cancel your request. Our
               team is here to assist you.
@@ -131,32 +131,31 @@ function PaymentSection(props) {
           <div
             className={`confirmation-point${point2Checked ? " checked" : ""}`}
           >
-            <input
+            {/* <input
               type="checkbox"
               checked={point2Checked}
               onChange={handlePoint2Change}
-            />
-            <label onClick={handlePoint2Change} className="point-label">
+            /> */}
+            <label className="point-label">
               Our team member will reach out within 1 hour to reconfirm details.
             </label>
           </div>
           <div
             className={`confirmation-point${point3Checked ? " checked" : ""}`}
           >
-            <input
+            {/* <input
               type="checkbox"
               checked={point3Checked}
               onChange={handlePoint3Change}
-            />
-            <label onClick={handlePoint3Change} className="point-label">
+            /> */}
+            <label className="point-label">
               Before our team member arrives, we'll call to ensure the car is
               available for washing.
             </label>
           </div>
           <div
-            className={`confirmation-point${
-              confirmationChecked ? " checked" : ""
-            }`}
+            className={`confirmation-point${confirmationChecked ? " checked" : ""
+              }`}
           >
             <input
               type="checkbox"
@@ -175,15 +174,14 @@ function PaymentSection(props) {
 
           <button
             onClick={confirmClicked}
-            className={`confirm-button${
-              !point1Checked ||
+            className={`confirm-button${!point1Checked ||
               !point2Checked ||
               !point3Checked ||
               !confirmationChecked ||
               !isFormReady
-                ? " disabled"
-                : ""
-            }`}
+              ? " disabled"
+              : ""
+              }`}
             disabled={
               !point1Checked ||
               !point2Checked ||
@@ -205,7 +203,7 @@ function PaymentSection(props) {
 
           <div
             className="havingIssueContainer"
-            // onClick={handleContactButtonClick}
+          // onClick={handleContactButtonClick}
           >
             <img
               className="issueIcon"
