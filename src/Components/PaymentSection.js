@@ -96,7 +96,7 @@ function PaymentSection(props) {
         {discountActiveStatus ? (
           <div className="totalsection">
             <h3>Discount</h3>
-            <h3 style={{ color: "#e74c3c" }}>- $15 </h3>
+            <h3 style={{ color: "#e74c3c" }}>-$15 </h3>
           </div>
         ) : (
           <div></div>

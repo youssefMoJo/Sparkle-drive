@@ -465,19 +465,19 @@ function FormsSection(props) {
     if (selectedExCustomization.length > 0) {
       setTotalPrice(
         pricingData.carTypes[carTypes[selectedCarTypeIndex]][
-          cleanTypes[selectedCleanTypeIndex]
+        cleanTypes[selectedCleanTypeIndex]
         ][washExCustomizations[selectedExCustomizationIndex]]
       );
     } else if (selectedInCustomization.length > 0) {
       setTotalPrice(
         pricingData.carTypes[carTypes[selectedCarTypeIndex]][
-          cleanTypes[selectedCleanTypeIndex]
+        cleanTypes[selectedCleanTypeIndex]
         ][washInCustomizations[selectedInCustomizationIndex]]
       );
     } else if (selectedBoCustomization.length > 0) {
       setTotalPrice(
         pricingData.carTypes[carTypes[selectedCarTypeIndex]][
-          cleanTypes[selectedCleanTypeIndex]
+        cleanTypes[selectedCleanTypeIndex]
         ][washBoCustomizations[selectedBoCustomizationIndex]]
       );
     } else {
@@ -599,7 +599,7 @@ function FormsSection(props) {
         <div className="formSmallSection">
           <div className="greenTickWithTitle">
             {reEnterPhoneNumber.length === 16 &&
-            reEnterPhoneNumber === phoneNumber ? (
+              reEnterPhoneNumber === phoneNumber ? (
               <img
                 className="greenTick"
                 src={require(`../Assets/greenTick2.png`)}
@@ -752,13 +752,13 @@ function FormsSection(props) {
         </div>
 
         {selectedCleanType === "Exterior" ||
-        selectedCleanType === "Interior" ||
-        selectedCleanType === "Both" ? (
+          selectedCleanType === "Interior" ||
+          selectedCleanType === "Both" ? (
           <div className="formSmallSection">
             <div className="greenTickWithTitle">
               {selectedExCustomization.length > 0 ||
-              selectedInCustomization.length > 0 ||
-              selectedBoCustomization.length > 0 ? (
+                selectedInCustomization.length > 0 ||
+                selectedBoCustomization.length > 0 ? (
                 <img
                   className="greenTick"
                   src={require(`../Assets/greenTick2.png`)}
@@ -772,10 +772,10 @@ function FormsSection(props) {
                 {selectedCleanType === "Both"
                   ? "Exterior and Interior"
                   : selectedCleanType === "Exterior"
-                  ? "Exterior"
-                  : selectedCleanType === "Interior"
-                  ? "Interior"
-                  : ""}{" "}
+                    ? "Exterior"
+                    : selectedCleanType === "Interior"
+                      ? "Interior"
+                      : ""}{" "}
                 Wash
                 <span className="star">*</span>
               </div>
@@ -939,20 +939,18 @@ function FormsSection(props) {
             </select>
             <div className="working-hours">
               <p
-                className={`working-hours-note${
-                  isWeekend(selectedDate)
-                    ? ""
-                    : selectedDate.length === 0
+                className={`working-hours-note${isWeekend(selectedDate)
+                  ? ""
+                  : selectedDate.length === 0
                     ? ""
                     : "-weekend"
-                }`}
+                  }`}
               >
                 Weekdays: 6 PM - 10 PM
               </p>
               <p
-                className={`working-hours-note${
-                  isWeekend(selectedDate) ? "-weekend" : ""
-                }`}
+                className={`working-hours-note${isWeekend(selectedDate) ? "-weekend" : ""
+                  }`}
               >
                 Weekends: 12 PM - 9 PM
               </p>
