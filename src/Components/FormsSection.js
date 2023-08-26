@@ -144,6 +144,31 @@ function FormsSection(props) {
         if (discountActiveStatus) {
           TotalAfterDiscount = totalPrice - 15;
         }
+
+        let CustomizationOnSMSMessage = ""
+        if (selectedExCustomization.length != 0) {
+          CustomizationOnSMSMessage = selectedExCustomization
+        } else if (selectedInCustomization.length != 0) {
+          CustomizationOnSMSMessage = selectedInCustomization
+        } else {
+          CustomizationOnSMSMessage = selectedBoCustomization
+        }
+
+        let CleanTypeForSMS = ""
+        if (selectedCleanType === "Exterior") {
+          CleanTypeForSMS = "Exterior"
+        } else if (selectedCleanType === "Interior") {
+          CleanTypeForSMS = "Interior"
+        } else {
+          CleanTypeForSMS = "Exterior and Interior"
+        }
+
+        const SMSMessage = `Hello ${name}! Your car wash order is confirmed for ${selectedDate} at ${selectedTime % 12 === 0 ? 12 : selectedTime % 12} PM. We'll focus on the ${CleanTypeForSMS} of your ${selectedCarType}, giving it a refreshing wash. You've chosen the ${CustomizationOnSMSMessage} option for that extra shine! Please be ready at ${address}, ${postalCode} with your vehicle. 
+        Total cost: ${TotalAfterDiscount}. Pay via ${selectedPayType}.
+        Reply to this message to modify or cancel your request. Our team is here to assist you.
+        Thank you for choosing us!
+          `
+
         const response = await fetch(
           `https://carwash-d2381-default-rtdb.firebaseio.com/Days/${selectedDate}/${phoneNumber}.json`,
           {
@@ -166,6 +191,7 @@ function FormsSection(props) {
               selectedTime,
               totalPrice,
               TotalAfterDiscount,
+              SMSMessage
             }),
           }
         );
