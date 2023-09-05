@@ -439,8 +439,8 @@ function FormsSection(props) {
 
   const washExCustomizations = ["Basic Clean", "Premium Shine"];
   const washExCustomizationsDescription = [
-    "A thorough wash using water and soap to refresh your vehicle's exterior.",
-    "Give your car a premium shine with a complete treatment: water, soap, detailed drying, wheel cleaning, tire shining, and a glossy finish.",
+    `A thorough wash using water and soap to refresh your vehicle's exterior. - $${selectedCarType === "Cydan" ? 100 : selectedCarType === "SUV" ? 125 : selectedCarType === "Truck" ? 125 : 0}`,
+    `Give your car a premium shine with a complete treatment: water, soap, detailed drying, wheel cleaning, tire shining, and a glossy finish. - $${selectedCarType === "Cydan" ? 125 : selectedCarType === "SUV" ? 150 : selectedCarType === "Truck" ? 175 : 0}`,
   ];
 
   const handleExCustomizations = (index) => {
@@ -457,8 +457,8 @@ function FormsSection(props) {
 
   const washInCustomizations = ["Basic Clean", "Premium Shine"];
   const washInCustomizationsDescription = [
-    "Vacuuming of carpets, mats, and seats, along with window cleaning.",
-    "Using a carpet shampooer for deep cleaning of carpets, mats, and seats, along with thorough vacuuming and window cleaning.",
+    `Vacuuming of carpets, mats, and seats, along with window cleaning. - $${selectedCarType === "Cydan" ? 100 : selectedCarType === "SUV" ? 125 : selectedCarType === "Truck" ? 125 : 0}`,
+    `Using a carpet shampooer for deep cleaning of carpets, mats, and seats, along with thorough vacuuming and window cleaning. - $${selectedCarType === "Cydan" ? 125 : selectedCarType === "SUV" ? 150 : selectedCarType === "Truck" ? 150 : 0}`,
   ];
 
   const handleInCustomizations = (index) => {
@@ -475,6 +475,15 @@ function FormsSection(props) {
 
   const washBoCustomizations = ["Basic Clean", "Premium Shine"];
   const washBoCustomizationsDescription = ["", ""];
+  let washBoCustomizationsTotals = [0, 0]
+
+  if (selectedCarType === "Cydan") {
+    washBoCustomizationsTotals = [180, 200]
+  } else if (selectedCarType === "SUV") {
+    washBoCustomizationsTotals = [200, 225]
+  } else {
+    washBoCustomizationsTotals = [200, 250]
+  }
 
   const handleBoCustomizations = (index) => {
     if (selectedBoCustomizationIndex === index) {
@@ -495,6 +504,7 @@ function FormsSection(props) {
         cleanTypes[selectedCleanTypeIndex]
         ][washExCustomizations[selectedExCustomizationIndex]]
       );
+
     } else if (selectedInCustomization.length > 0) {
       setTotalPrice(
         pricingData.carTypes[carTypes[selectedCarTypeIndex]][
@@ -507,6 +517,7 @@ function FormsSection(props) {
         cleanTypes[selectedCleanTypeIndex]
         ][washBoCustomizations[selectedBoCustomizationIndex]]
       );
+
     } else {
       setTotalPrice(0);
     }
@@ -922,6 +933,20 @@ function FormsSection(props) {
                             Interior:{" "}
                           </span>
                           {washInCustomizationsDescription[i]}
+                          <br />
+                          <br />
+                          <span
+                            style={{
+                              color:
+                                selectedBoCustomizationIndex === i
+                                  ? "yellow"
+                                  : "blue",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Total: {" $"}
+                          </span>
+                          {washBoCustomizationsTotals[i]}
                         </div>
                       </div>
                     </div>
