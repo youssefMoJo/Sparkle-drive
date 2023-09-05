@@ -379,7 +379,7 @@ function FormsSection(props) {
     setReEnterPhoneNumber(formattedPhoneNumber);
   };
 
-  const carTypes = ["Cydan", "SUV", "Truck"];
+  const carTypes = ["Sedan", "SUV", "Truck"];
 
   const handleCarTypeClick = (index) => {
     if (selectedCarTypeIndex === index) {
@@ -439,8 +439,8 @@ function FormsSection(props) {
 
   const washExCustomizations = ["Basic Clean", "Premium Shine"];
   const washExCustomizationsDescription = [
-    `A thorough wash using water and soap to refresh your vehicle's exterior. - $${selectedCarType === "Cydan" ? 100 : selectedCarType === "SUV" ? 125 : selectedCarType === "Truck" ? 125 : 0}`,
-    `Give your car a premium shine with a complete treatment: water, soap, detailed drying, wheel cleaning, tire shining, and a glossy finish. - $${selectedCarType === "Cydan" ? 125 : selectedCarType === "SUV" ? 150 : selectedCarType === "Truck" ? 175 : 0}`,
+    `A thorough wash using water and soap to refresh your vehicle's exterior. $${selectedCarType === "Sedan" ? 100 : selectedCarType === "SUV" ? 125 : selectedCarType === "Truck" ? 125 : 0}`,
+    `Give your car a premium shine with a complete treatment: water, soap, detailed drying, wheel cleaning, tire shining, and a glossy finish. $${selectedCarType === "Sedan" ? 125 : selectedCarType === "SUV" ? 150 : selectedCarType === "Truck" ? 175 : 0}`,
   ];
 
   const handleExCustomizations = (index) => {
@@ -457,8 +457,8 @@ function FormsSection(props) {
 
   const washInCustomizations = ["Basic Clean", "Premium Shine"];
   const washInCustomizationsDescription = [
-    `Vacuuming of carpets, mats, and seats, along with window cleaning. - $${selectedCarType === "Cydan" ? 100 : selectedCarType === "SUV" ? 125 : selectedCarType === "Truck" ? 125 : 0}`,
-    `Using a carpet shampooer for deep cleaning of carpets, mats, and seats, along with thorough vacuuming and window cleaning. - $${selectedCarType === "Cydan" ? 125 : selectedCarType === "SUV" ? 150 : selectedCarType === "Truck" ? 150 : 0}`,
+    `Vacuuming of carpets, mats, and seats, along with window cleaning. $${selectedCarType === "Sedan" ? 100 : selectedCarType === "SUV" ? 125 : selectedCarType === "Truck" ? 125 : 0}`,
+    `Using a carpet shampooer for deep cleaning of carpets, mats, and seats, along with thorough vacuuming and window cleaning. $${selectedCarType === "Sedan" ? 125 : selectedCarType === "SUV" ? 150 : selectedCarType === "Truck" ? 150 : 0}`,
   ];
 
   const handleInCustomizations = (index) => {
@@ -477,7 +477,7 @@ function FormsSection(props) {
   const washBoCustomizationsDescription = ["", ""];
   let washBoCustomizationsTotals = [0, 0]
 
-  if (selectedCarType === "Cydan") {
+  if (selectedCarType === "Sedan") {
     washBoCustomizationsTotals = [180, 200]
   } else if (selectedCarType === "SUV") {
     washBoCustomizationsTotals = [200, 225]

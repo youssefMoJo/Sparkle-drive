@@ -1,6 +1,6 @@
 const pricingData = {
   carTypes: {
-    Cydan: {
+    Sedan: {
       Exterior: {
         "Basic Clean": 100,
         "Premium Shine": 125,
