@@ -481,7 +481,7 @@ function FormsSection(props) {
     washBoCustomizationsTotals = [180, 200]
   } else if (selectedCarType === "SUV") {
     washBoCustomizationsTotals = [200, 225]
-  } else {
+  } else if (selectedCarType === "Truck") {
     washBoCustomizationsTotals = [200, 250]
   }
 
